@@ -142,11 +142,12 @@
     <ClCompile Include="algorithms.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="binary_search.hpp" />
-    <ClInclude Include="linear_search.hpp" />
-    <ClInclude Include="linear_sort.hpp" />
-    <ClInclude Include="quick_sort.hpp" />
-    <ClInclude Include="radix_sort.hpp" />
+    <ClInclude Include="search\binary_search.hpp" />
+    <ClInclude Include="search\linear_search.hpp" />
+    <ClInclude Include="sort\hierarchical_sorting.hpp" />
+    <ClInclude Include="sort\linear_sort.hpp" />
+    <ClInclude Include="sort\quick_sort.hpp" />
+    <ClInclude Include="sort\radix_sort.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
