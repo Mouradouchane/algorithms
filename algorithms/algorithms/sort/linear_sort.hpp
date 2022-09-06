@@ -5,9 +5,11 @@ namespace sort {
 	// O( n² )
 	// linear sort algoritm 
 	template<typename T> void linear_sort(
+
 		T* arr , // array as pointer
 		size_t const& length , // length of array
 		bool (*comparison_function)(T& a , T&b) // function we gonna using it to compare array elements
+
 	) {
 
 		// varaible for performing some swap if we need 
@@ -43,4 +45,4 @@ namespace sort {
 	} // end of linear_sort algorithm
 
 
-}
+} // end of namespace sort

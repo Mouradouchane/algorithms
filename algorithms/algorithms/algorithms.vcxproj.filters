@@ -44,5 +44,8 @@
     <ClInclude Include="sort\hierarchical_sorting.hpp">
       <Filter>sort</Filter>
     </ClInclude>
+    <ClInclude Include="sort\heap_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

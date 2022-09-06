@@ -1,23 +1,29 @@
 #include <iostream>
 
-#include "sort/linear_sort.hpp"
-#include "sort/hierarchical_sorting.hpp"
+//#include "sort/linear_sort.hpp"
+//#include "sort/hierarchical_sorting.hpp"
+#include "sort/heap_sort.hpp"
 
-#include "search/binary_search.hpp"
-#include "search/linear_search.hpp"
+//#include "search/binary_search.hpp"
+//#include "search/linear_search.hpp"
 
 template<typename T> void print_array(T* arr, size_t const& length);
 
 int main(){
 
-    int arr[12] = {1,2,3,4,5,6,7,8,11,12,15,16};
+    int arr[12] = { 144,8,10,3,9,42,55,100,7,56,2,13 };
+
+    print_array<int>(arr, (sizeof(arr) / sizeof(int)));
+
+    sort::heap_sort<int>(arr, (size_t)(sizeof(arr) / sizeof(int)) - 1, 
+        []( int const& a , int const& b ) -> bool { return a > b; } 
+    );
 
     print_array<int>( arr , (sizeof(arr) / sizeof(int)) );
 
-    std::cout << "target found : " << search::linear_search_b<int>(arr, 11, 16 ) << '\n';
-    std::cout << "target found : " << search::linear_search_b<int>(arr, 11, 17 ) << '\n';
-    std::cout << "target found : " << search::linear_search_b<int>(arr, 11, -1 ) << '\n';
-    std::cout << "target found : " << search::linear_search_b<int>(arr, 11, 10 ) << '\n';
+    /*
+        std::cout << "target found : " << search::linear_search_b<int>(arr, 11, 10) << '\n';
+    */
 
     return 0;
 }
