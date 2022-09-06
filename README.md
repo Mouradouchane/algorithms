@@ -8,7 +8,7 @@ repo for different types of algorithms using modern C++
 <summary> 
 <h4> sort </h4>
 </summary>
-<a href="./algorithms/algorithms/sort" target="_blank"> pyramid_sort </a> <br>
+<a href="./algorithms/algorithms/sort/hierarchical_sorting.hpp" target="_blank"> pyramid_sort </a> <br>
 <a href="./" target="_blank"> linear_sort </a> <br>
 <a href="./" target="_blank"> heap_sort </a> <br>
 <a href="./" target="_blank"> quick_sort </a> <br>
