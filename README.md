@@ -2,18 +2,19 @@
 
 repo for different types of algorithms using modern C++
 
-## content
+<h2> content </h2>
 
 <details open>
 <summary> 
 <h4> sort </h4>
 </summary>
 <a href="./algorithms/algorithms/sort/hierarchical_sorting.hpp" target="_blank"> pyramid_sort </a> <br>
-<a href="./" target="_blank"> linear_sort </a> <br>
-<a href="./" target="_blank"> heap_sort </a> <br>
-<a href="./" target="_blank"> quick_sort </a> <br>
-<a href="./" target="_blank"> radix_sort </a> <br>
+<a href="./algorithms/algorithms/sort/linear_sort.hpp" target="_blank"> linear_sort </a> <br>
+<a href="./algorithms/algorithms/sort/heap_sort.hpp"   target="_blank"> heap_sort   </a> <br>
+<a href="./algorithms/algorithms/sort/quick_sort.hpp"  target="_blank"> quick_sort  </a> <br>
+<a href="./algorithms/algorithms/sort/radix_sort.hpp"  target="_blank"> radix_sort  </a> <br>
 </details>
+
 <details close>
 <summary> 
 <h4> search </h4>
