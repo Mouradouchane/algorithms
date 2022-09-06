@@ -19,6 +19,6 @@ repo for different types of algorithms using modern C++
 <summary> 
 <h4> search </h4>
 </summary>
-<a href="./" target="_blank"> linear_search </a> <br>
-<a href="./" target="_blank"> binary_search </a> <br>
+<a href="./algorithms/algorithms/search/linear_search.hpp"  target="_blank"> linear_search </a> <br>
+<a href="./algorithms/algorithms/search/binary_search.hpp"  target="_blank"> binary_search </a> <br>
 </details>
