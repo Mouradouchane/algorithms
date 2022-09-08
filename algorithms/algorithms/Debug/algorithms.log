@@ -1,18 +1,2 @@
 ﻿  algorithms.cpp
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\heap_sort.hpp(32,19): warning C4018: '>': signed/unsigned mismatch
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\heap_sort.hpp(146): message : see reference to function template instantiation 'void sort::`anonymous-namespace'::heapify<T>(T *,size_t,int,bool (__cdecl *)(const T &,const T &))' being compiled
-          with
-          [
-              T=int
-          ]
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\algorithms.cpp(20): message : see reference to function template instantiation 'void sort::heap_sort<int>(T *,size_t,bool (__cdecl *)(const T &,const T &))' being compiled
-          with
-          [
-              T=int
-          ]
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\heap_sort.hpp(32,43): warning C4018: '>': signed/unsigned mismatch
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\heap_sort.hpp(35,19): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\heap_sort.hpp(35,44): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\heap_sort.hpp(71,19): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\heap_sort.hpp(86,20): warning C4018: '<=': signed/unsigned mismatch
   algorithms.vcxproj -> C:\Users\devc\Desktop\cpp\algorithms\algorithms\Debug\algorithms.exe
