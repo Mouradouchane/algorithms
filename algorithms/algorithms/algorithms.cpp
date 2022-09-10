@@ -19,7 +19,7 @@ bool cp_fn( int const& a, int const& b ) {
 
 int main(){
 
-    int arr[6] = { 144,8,10,3,9,1 };
+    int arr[10] = { 10,9,8,7,6,5,4,3,2,1 };
 
     print_array<int>(arr, (sizeof(arr) / sizeof(int)));
 
