@@ -34,35 +34,41 @@ namespace sort {
 
 
 		template<typename T> void sort_process_inplace(
-			T* arr,
-			int left_start,
-			int right_start,
-			int right_end,
+			T * arr ,
+			int l_start ,
+			int r_start ,
+			int l_size  ,
+			int r_size  ,
 			bool (*&compare_function)(T const& a, T const& b)
 		) {
+			
+			int i = l_start;
+			int j = r_start; 
 
-			int i = left_start;
-			int j = right_start; 
-
-			while (i <= right_end) {
+			while (i < (l_size + r_size)) {
 
 				if (i == j) {
 					i += 1;
 					continue;
 				}
 
-				if (compare_function(arr[i], arr[j])) {
+				// if it valid range
+				if ( i < j && compare_function(arr[i], arr[j]) ) {
 
-					if (j < right_end) j += 1;
+					// if (j < (l_size + r_size - 1) ) j += 1;
 					i += 1;
 
 				}
+				// if it not
 				else {
 
 					if (i > j && compare_function(arr[i], arr[j])) swap<T>(arr[i], arr[j]);
 					else {
 						shift_process_inplace<T>(arr, i, j);
 					}
+
+					i += 1;
+					if (j < (l_size + r_size - 1) ) j += 1;
 
 				}
 
@@ -77,22 +83,38 @@ namespace sort {
 			bool (*&compare_function)(T const& a, T const& b)
 		) {
 
-			if ( (right - left + 1) >= 2 ) {
+			if ( (right - left + 1) > 2 ) {
 
-				int mid = (left + right) / 2;
+				int mid  = (left + right) / 2;
 
 				split_process_inplace<T>(arr , left , mid , compare_function);
 				split_process_inplace<T>(arr , mid+1  , right , compare_function);
 
-				std::cout << "\n================================\n\n";
-				sort_process_inplace<T>(arr, left , mid+1 , right , compare_function);
-				for (int i = left; i <= right; i += 1) {
-					std::cout << arr[i] << " , ";
+
+				sort_process_inplace<T>(
+					arr  , 
+					left , mid + 1 ,
+					mid - left + 1 , right - mid  , 
+					compare_function
+				);
+
+
+			}
+			else {
+
+				if ( (right - left + 1) == 2 && !compare_function(arr[left], arr[right]) ) {
+
+						swap<T>(arr[left], arr[right]);
+
 				}
-				std::cout << "\n================================\n\n";
 
 			}
 
+			std::cout << "\n================================\n\n";
+			for (int i = left; i <= right; i += 1) {
+				std::cout << arr[i] << " , ";
+			}
+			std::cout << "\n================================\n\n";
 		}
 
 		
@@ -102,9 +124,9 @@ namespace sort {
 
 	// O( n log n ) ==> O( n² log n )
 	template<typename type> void merge_sort_inplace( 
-		type *arr ,
-		int left  ,
-		int right ,
+		type * arr ,
+		int  left  ,
+		int  right ,
 		bool (*compare_function)( type const& a , type const& b )
 	) {
 

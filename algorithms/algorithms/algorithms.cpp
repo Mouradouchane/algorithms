@@ -20,13 +20,13 @@ bool cp_fn( int const& a, int const& b ) {
 
 int main(){
 
-    int arr[3] = { 10, 3, 2 };
+    int arr[6] = { 6,5,4,3,2,1 };
 
     print_array<int>(arr, (sizeof(arr) / sizeof(int)));
 
-    int *parr = sort::merge_sort<int>(arr, 0, (int)(sizeof(arr) / sizeof(int)) - 1, &cp_fn);
+    sort::merge_sort_inplace<int>(arr, 0, (int)(sizeof(arr) / sizeof(int)) - 1, &cp_fn);
 
-    print_array<int>( parr, (sizeof(arr) / sizeof(int)) );
+    print_array<int>( arr , (sizeof(arr) / sizeof(int)) );
 
 
     return 0;
