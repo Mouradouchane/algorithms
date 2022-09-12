@@ -146,9 +146,12 @@
     <ClInclude Include="search\linear_search.hpp" />
     <ClInclude Include="sort\heap_sort.hpp" />
     <ClInclude Include="sort\hierarchical_sorting.hpp" />
+    <ClInclude Include="sort\insertion_sort.hpp" />
     <ClInclude Include="sort\linear_sort.hpp" />
+    <ClInclude Include="sort\merge_sort.hpp" />
     <ClInclude Include="sort\quick_sort.hpp" />
     <ClInclude Include="sort\radix_sort.hpp" />
+    <ClInclude Include="sort\selection_sort.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

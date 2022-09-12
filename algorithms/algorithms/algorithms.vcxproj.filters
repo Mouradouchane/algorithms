@@ -47,5 +47,14 @@
     <ClInclude Include="sort\heap_sort.hpp">
       <Filter>sort</Filter>
     </ClInclude>
+    <ClInclude Include="sort\insertion_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\merge_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\selection_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
