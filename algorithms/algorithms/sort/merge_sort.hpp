@@ -1,4 +1,4 @@
-#include<list>
+
 #pragma once
 
 // this namespace contain merge_sort "in place" and it's functionalities
@@ -16,91 +16,99 @@ namespace sort {
 
 		}
 
-
+		// O( n )
 		template<typename T> void shift_process_inplace(T *arr , int &start_index , int &end_index) {
 
-			T temp1 = arr[end_index];
+			// get target element
+			T target = arr[end_index];
 			arr[end_index] = NULL;
 		
+			// preform shift from last - 1 to the start 
 			for (int i = end_index - 1; i >= start_index; i -= 1) {
 
 				arr[i+1] = arr[i];
 
 			}
 
-			arr[start_index] = temp1;
+			// put target element in it's correct position
+			arr[start_index] = target;
 
 		}
 
-
+		// O( n )
+		// sort elements in place using shifting function
 		template<typename T> void sort_process_inplace(
-			T * arr ,
-			int l_start ,
-			int r_start ,
-			int l_size  ,
-			int r_size  ,
-			bool (*&compare_function)(T const& a, T const& b)
+			T * arr   , // target array
+			int start , // start index
+			int mid   , // mid index
+			int end   , // end index
+			bool (*&compare_function)(T const& a, T const& b) // to compare elements
 		) {
-			
-			int i = l_start;
-			int j = r_start; 
 
-			while (i < (l_size + r_size)) {
+			int i = start; // index of first element
+			int j = mid ; // index of mid element
 
+			// while i in range
+			while (i < end) {
+
+				// i == j no need to for comparison :)
 				if (i == j) {
 					i += 1;
 					continue;
 				}
 
-				// if it valid range
-				if ( i < j && compare_function(arr[i], arr[j]) ) {
+				// if range invalid
+				if (i < j && !compare_function(arr[i], arr[j])) {
 
-					// if (j < (l_size + r_size - 1) ) j += 1;
+					// shit from i to j
+					shift_process_inplace<T>(arr, i, j);
+					// then increment i & j for next range
 					i += 1;
+					if (j < end) j += 1; // if j at the end don't increment it
 
 				}
-				// if it not
 				else {
 
+					// if i > j and not a vaild range we need to preform swap
 					if (i > j && compare_function(arr[i], arr[j])) swap<T>(arr[i], arr[j]);
-					else {
-						shift_process_inplace<T>(arr, i, j);
-					}
 
+					// in that case increment i only 
 					i += 1;
-					if (j < (l_size + r_size - 1) ) j += 1;
 
 				}
 
 			}
 		}
 
-
+		// O( n log n ) 
+		// recursive process
 		template<typename T> void split_process_inplace(
-			T*  arr   ,
-			int left  ,
-			int right ,
-			bool (*&compare_function)(T const& a, T const& b)
+			T*  arr   , // target array
+			int left  , // start index you want to sort
+			int right , // end index 
+			bool (*&compare_function)(T const& a, T const& b) // function we using to compare elements
 		) {
 
+			// while there's more than 2 elements
 			if ( (right - left + 1) > 2 ) {
-
+				
+				// calc mid point
 				int mid  = (left + right) / 2;
 
+				// O( log n )
+				// then recursive process from "start_index to mid" & "mid + 1 to end_index"
 				split_process_inplace<T>(arr , left , mid , compare_function);
 				split_process_inplace<T>(arr , mid+1  , right , compare_function);
 
-
-				sort_process_inplace<T>(
-					arr  , 
-					left , mid + 1 ,
-					mid - left + 1 , right - mid  , 
-					compare_function
-				);
-
+				// O( n )
+				// preform merging and sorting after split done
+				// sort from start_index to end_index "full range"
+				sort_process_inplace<T>(arr , left , mid+1 , right , compare_function);
 
 			}
-			else {
+			else { 
+				// otherwise mean there's 2 or 1 element in range , so no need to split or merge 
+				// just preforme direct comparison 
 
 				if ( (right - left + 1) == 2 && !compare_function(arr[left], arr[right]) ) {
 
@@ -110,30 +118,71 @@ namespace sort {
 
 			}
 
-			std::cout << "\n================================\n\n";
-			for (int i = left; i <= right; i += 1) {
-				std::cout << arr[i] << " , ";
-			}
-			std::cout << "\n================================\n\n";
 		}
+
+
+
+		// sort process function 1
+		/*
+		template<typename T> void sort_process_inplace(
+			T * arr ,
+			int l_start ,
+			int r_start ,
+			int l_size  ,
+			int r_size  ,
+			bool (*&compare_function)(T const& a, T const& b)
+		) {
+
+			int total_range = l_start + l_size + r_size;
+			int i = l_start;
+			int j = r_start;
+
+			while ( i < total_range ) {
+
+				if (i == j) {
+					i += 1;
+					continue;
+				}
+
+				// if it valid range
+				if ( i < j && !compare_function(arr[i], arr[j]) ) {
+
+					// if (j < (l_size + r_size - 1) ) j += 1;
+					shift_process_inplace<T>(arr, i, j);
+					i += 1;
+					if (j < (l_start + r_size + l_size - 1)) j += 1;
+
+				}
+				// if it not
+				else {
+
+					if (i > j && compare_function(arr[i], arr[j])) swap<T>(arr[i], arr[j]);
+
+					i += 1;
+
+				}
+
+			}
+		}
+		*/
 
 		
 
 	} // end of namespace
 
 
-	// O( n log n ) ==> O( n² log n )
+	// O( n log n )
 	template<typename type> void merge_sort_inplace( 
-		type * arr ,
-		int  left  ,
-		int  right ,
-		bool (*compare_function)( type const& a , type const& b )
+		type * arr , // target array as pointer
+		int  start_index , // start index in the array
+		int  end_index   , // end index in the array
+		bool (*compare_function)( type const& a , type const& b ) // function used to compare elements
 	) {
 
-		split_process_inplace<type>(arr, left, right, compare_function);
+		// split process calls merge/sort process
+		split_process_inplace<type>(arr, start_index, end_index, compare_function);
 
 	}
-
 
 
 } // end of namespace 1
@@ -149,10 +198,10 @@ namespace sort {
 		// merge and sort elements in tow arrays
 		// note : this function will return sorted array allocated at the heap
 		template<typename T> T* merge_process(
-			T* l_array, // left  array you want to merge 
-			T* r_array, // right array you want to merge
-			int l_size, // size of left  array
-			int r_size, // size of right array
+			T* l_array, // start_index  array you want to merge 
+			T* r_array, // end_index array you want to merge
+			int l_size, // size of start_index  array
+			int r_size, // size of end_index array
 			bool (*&compare_function)(T const& a, T const& b) // function used in comparison 
 		){
 		
@@ -160,8 +209,8 @@ namespace sort {
 			T * new_arr = new T[ sizeof(T) * (l_size + r_size) ];
 		
 			// variales used in loop
-			// l for left array
-			// r for right array
+			// l for start_index array
+			// r for end_index array
 			// n for new array
 			int l = 0, r = 0, n = 0;
 
@@ -170,13 +219,13 @@ namespace sort {
 				// if l & r still in arrays range that mean we can keep going and compare elements
 				if (l < l_size && r < r_size) {
 
-					// compare element from left array & element from right array
+					// compare element from start_index array & element from end_index array
 					if (compare_function(l_array[l], r_array[r])) {
-						// if true insert left element
+						// if true insert start_index element
 						new_arr[n] = l_array[l];
 						l += 1;
 					}
-					else { // otherwise insert right element
+					else { // otherwise insert end_index element
 						new_arr[n] = r_array[r];
 						r += 1;
 					}
@@ -190,20 +239,20 @@ namespace sort {
 			}
 
 
-			// if l is still in range that mean there's still elements in left array need to get inserted
+			// if l is still in range that mean there's still elements in start_index array need to get inserted
 			if (l < l_size) {
 				for (l; l < l_size; l += 1 , n += 1) {
 					new_arr[n] = l_array[l];
 				}
 			}
-			// if r is still in range that mean there's still elements in right array need to get inserted
+			// if r is still in range that mean there's still elements in end_index array need to get inserted
 			if (r < r_size) {
 				for (r; r < r_size; r += 1 , n += 1) {
 					new_arr[n] = r_array[r];
 				}
 			}
 
-			// at this point no need to the old left & right arrays
+			// at this point no need to the old start_index & end_index arrays
 			// soo delete them & return new sorted array
 			delete[] l_array;
 			delete[] r_array;
@@ -231,7 +280,7 @@ namespace sort {
 			// calc index of mid element
 			int mid = (right + left) / 2;
 
-			// recursive process from "left --> mid" and "mid+1 --> right"
+			// recursive process from "start_index --> mid" and "mid+1 --> end_index"
 			type * l_arr = merge_sort<type>(arr, left, mid, compare_function);
 			type * r_arr = merge_sort<type>(arr, mid+1, right, compare_function);
 
