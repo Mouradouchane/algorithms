@@ -78,24 +78,24 @@ namespace sort {
 
 
 	// O( n log n )
-	template<typename type> void quick_sort( 
-		type * arr , // target array you want to sort
+	template<typename T> void quick_sort( 
+		T * arr , // target array you want to sort
 		int left ,   // start index
 		int right ,  // end index
-		bool (*compare_function)(type const& target, type const& other_element) // function we using it to compare elements and preform sorting
+		bool (*compare_function)(T const& target, T const& other_element) // function we using it to compare elements and preform sorting
 	){
 		// if left & right in array range & valid
 		if (left < right) {
 
 			// O( n )
 			// process sort for one target and return "pivot" index
-			int partiton_index = parition<type>(arr, left, right , compare_function);
+			int partiton_index = parition<T>(arr, left, right , compare_function);
 
 			// O( log n )
 			// preforme quick sort recursivlly in each direction depeneding on "pivot" index
 
-			quick_sort<type>(arr, left, partiton_index - 1 , compare_function);   // left to pivot
-			quick_sort<type>(arr, partiton_index + 1 , right , compare_function); // right to pivot
+			quick_sort<T>(arr, left, partiton_index - 1 , compare_function);   // left to pivot
+			quick_sort<T>(arr, partiton_index + 1 , right , compare_function); // right to pivot
 
 		}
 

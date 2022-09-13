@@ -172,15 +172,15 @@ namespace sort {
 
 
 	// O( n log n )
-	template<typename type> void merge_sort_inplace( 
-		type * arr , // target array as pointer
+	template<typename T> void merge_sort_inplace( 
+		T * arr , // target array as pointer
 		int  start_index , // start index in the array
 		int  end_index   , // end index in the array
-		bool (*compare_function)( type const& a , type const& b ) // function used to compare elements
+		bool (*compare_function)( T const& a , T const& b ) // function used to compare elements
 	) {
 
 		// split process calls merge/sort process
-		split_process_inplace<type>(arr, start_index, end_index, compare_function);
+		split_process_inplace<T>(arr, start_index, end_index, compare_function);
 
 	}
 
@@ -267,11 +267,11 @@ namespace sort {
 
 	// O( n log n )
 	// note : this function will return a new sorted array allocated at the heap
-	template<typename type> type* merge_sort(
-		type* arr   , // target array
+	template<typename T> T* merge_sort(
+		T* arr   , // target array
 		int   left  , // beginning of range you want to sort  
 		int   right , // end of range you want to sort  
-		bool (*compare_function)( type const& a, type const& b ) // function we used to compare elements
+		bool (*compare_function)( T const& a, T const& b ) // function we used to compare elements
 	) {
 
 		// if target range greated than 2
@@ -281,17 +281,17 @@ namespace sort {
 			int mid = (right + left) / 2;
 
 			// recursive process from "start_index --> mid" and "mid+1 --> end_index"
-			type * l_arr = merge_sort<type>(arr, left, mid, compare_function);
-			type * r_arr = merge_sort<type>(arr, mid+1, right, compare_function);
+			T * l_arr = merge_sort<T>(arr, left, mid, compare_function);
+			T * r_arr = merge_sort<T>(arr, mid+1, right, compare_function);
 
 			// after split done using recursive now it's the time to preforme sorting/merging 
-			return merge_process<type>( l_arr, r_arr , mid - left + 1 , right - mid , compare_function);
+			return merge_process<T>( l_arr, r_arr , mid - left + 1 , right - mid , compare_function);
 
 		}
 
 		// else mean range contain 2 or 1 element
 		// allocate new array at the heap
-		type * new_arr = new type[sizeof(type) * (right - left + 1)];
+		T * new_arr = new T[sizeof(T) * (right - left + 1)];
 
 		// if 2 elements preforme direct comparison
 		if ((right - left + 1) == 2) {
