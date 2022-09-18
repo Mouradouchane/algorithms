@@ -5,12 +5,13 @@
 #include "sort/linear_sort.hpp"
 #include "sort/quick_sort.hpp"
 #include "sort/merge_sort.hpp"
+#include "sort/hierarchical_sorting.hpp"
 
 #include "search/binary_search.hpp"
 #include "search/linear_search.hpp"
 */
 
-#include "sort/hierarchical_sorting.hpp"
+#include "sort/radix_sort.hpp"
 
 template<typename T> void print_array(T* arr, size_t const& length);
 
@@ -20,14 +21,14 @@ bool cp_fn( int const& a, int const& b ) {
 
 int main(){
 
-    int arr[20] = { 16,15,14,13,20,19,18,3,2,1,17,12,7,6,5,4,11,10,9,8 };
+    unsigned int arr[10] = { 120,999,80000,700,6213,5156,424563,314,33234,1000000 };
     //int arr[12] = { 95,11,12,10,9,7,16,8,5,4,2,1 };
 
-    print_array<int>(arr, (sizeof(arr) / sizeof(int)));
+    print_array<unsigned int>(arr, (sizeof(arr) / sizeof(int)));
 
-    sort::pyramid_sort<int>(arr, 0 , (size_t)(sizeof(arr) / sizeof(int)) - 1, &cp_fn);
+    sort::radix_sort(arr, (size_t)(sizeof(arr) / sizeof(int)) );
 
-    print_array<int>( arr , (sizeof(arr) / sizeof(int)) );
+    print_array<unsigned int>( arr , (sizeof(arr) / sizeof(int)) );
 
 
     return 0;
