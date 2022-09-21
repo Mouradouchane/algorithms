@@ -144,6 +144,8 @@
   <ItemGroup>
     <ClInclude Include="search\binary_search.hpp" />
     <ClInclude Include="search\linear_search.hpp" />
+    <ClInclude Include="sort\bubble_sort.hpp" />
+    <ClInclude Include="sort\counting_sort.hpp" />
     <ClInclude Include="sort\heap_sort.hpp" />
     <ClInclude Include="sort\hierarchical_sorting.hpp" />
     <ClInclude Include="sort\insertion_sort.hpp" />

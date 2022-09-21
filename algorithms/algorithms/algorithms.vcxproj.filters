@@ -56,5 +56,11 @@
     <ClInclude Include="sort\selection_sort.hpp">
       <Filter>sort</Filter>
     </ClInclude>
+    <ClInclude Include="sort\bubble_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\counting_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
