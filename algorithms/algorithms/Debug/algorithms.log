@@ -1,14 +1,2 @@
 ﻿  algorithms.cpp
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\insertion_sort.hpp(45,35): warning C4018: '>=': signed/unsigned mismatch
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\insertion_sort.hpp(86): message : see reference to function template instantiation 'int sort::`anonymous-namespace'::get_index<type>(T *,const size_t &,const size_t &,bool (__cdecl *&)(const T &,const T &))' being compiled
-          with
-          [
-              type=int,
-              T=int
-          ]
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\algorithms.cpp(31): message : see reference to function template instantiation 'void sort::insertion_sort<int>(type *,const size_t &,const size_t &,bool (__cdecl *)(const type &,const type &))' being compiled
-          with
-          [
-              type=int
-          ]
   algorithms.vcxproj -> C:\Users\devc\Desktop\cpp\algorithms\algorithms\Debug\algorithms.exe
