@@ -6,29 +6,31 @@
 #include "sort/quick_sort.hpp"
 #include "sort/merge_sort.hpp"
 #include "sort/hierarchical_sorting.hpp"
+#include "sort/radix_sort.hpp"
 
 #include "search/binary_search.hpp"
 #include "search/linear_search.hpp"
 */
 
-#include "sort/radix_sort.hpp"
+#include "sort/insertion_sort.hpp"
+
 
 template<typename T> void print_array(T* arr, size_t const& length);
 
-bool cp_fn( int const& a, int const& b ) {
-    return a < b;
+bool cp_fn( int const& target, int const& element ) {
+    return target < element;
 }
 
 int main(){
 
-    unsigned int arr[10] = { 120,999,80000,700,6213,5156,424563,314,33234,1000000 };
-    //int arr[12] = { 95,11,12,10,9,7,16,8,5,4,2,1 };
+    //int arr[15] = { 120,999,80000,700,6213,5156,424563,314,33234,1215649,12,7,86,2,7 };
+    int arr[9] = { 4,88,-1,5,-5,47,0,61,1 };
 
-    print_array<unsigned int>(arr, (sizeof(arr) / sizeof(int)));
+    print_array<int>(arr, (sizeof(arr) / sizeof(int)));
 
-    sort::radix_sort(arr, (size_t)(sizeof(arr) / sizeof(int)) );
+    sort::insertion_sort<int>(arr, 0 , (size_t)(sizeof(arr) / sizeof(int)) , cp_fn);
 
-    print_array<unsigned int>( arr , (sizeof(arr) / sizeof(int)) );
+    print_array<int>( arr , (sizeof(arr) / sizeof(int)) );
 
 
     return 0;
