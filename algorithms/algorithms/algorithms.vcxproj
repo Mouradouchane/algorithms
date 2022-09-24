@@ -154,6 +154,8 @@
     <ClInclude Include="sort\quick_sort.hpp" />
     <ClInclude Include="sort\radix_sort.hpp" />
     <ClInclude Include="sort\selection_sort.hpp" />
+    <ClInclude Include="sort\shell_sort.hpp" />
+    <ClInclude Include="sort\tree_sort.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

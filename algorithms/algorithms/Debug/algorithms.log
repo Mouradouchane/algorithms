@@ -1,2 +1,9 @@
 ﻿  algorithms.cpp
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\shell_sort.hpp(39,20): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\algorithms.cpp(39): message : see reference to function template instantiation 'void sort::shell_sort<int>(type *,const size_t &,const size_t &,bool (__cdecl *)(const type &,const type &))' being compiled
+          with
+          [
+              type=int
+          ]
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\shell_sort.hpp(52,22): warning C4018: '>=': signed/unsigned mismatch
   algorithms.vcxproj -> C:\Users\devc\Desktop\cpp\algorithms\algorithms\Debug\algorithms.exe

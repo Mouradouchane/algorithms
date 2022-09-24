@@ -62,5 +62,11 @@
     <ClInclude Include="sort\counting_sort.hpp">
       <Filter>sort</Filter>
     </ClInclude>
+    <ClInclude Include="sort\shell_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\tree_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
