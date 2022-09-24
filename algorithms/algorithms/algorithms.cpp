@@ -31,12 +31,14 @@ int main(){
     int arr[9] = { 4,88,-1,5,-5,47,0,61,1 };
     int arr[15] = {120,999,80000,700,6213,5156,424563,314,33234,1215649,12,7,86,2,7};
     int arr[9] = { 9,-8,7,6,-5,4,-3,2,1 };
-    */
     int arr[11] = { 11,10,9,8,7,6,5,4,3,2,1 };
+    int arr[20] = { 120,999,890,700,6213,5156,42563,314,33234,9,-8,7,6,-5,4,-3,2,1 };
+    */
+    int arr[7] = { 8,7,9,-3,10,2,1 };
 
     print_array<int>(arr, (sizeof(arr) / sizeof(int)));
 
-    sort::shell_sort<int>(arr, 0 , (size_t)(sizeof(arr) / sizeof(int))-1 , cp_fn);
+    sort::shell_sort<int>(arr, 0 , (size_t)(sizeof(arr) / sizeof(int))-1  , cp_fn);
 
     print_array<int>( arr , (sizeof(arr) / sizeof(int)) );
 

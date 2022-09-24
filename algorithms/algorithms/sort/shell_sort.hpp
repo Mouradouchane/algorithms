@@ -15,8 +15,11 @@ namespace sort {
 
 		}
 
+
 	} // end_index of anonymous namespace
 
+
+	// O( less than n²) --> O( n² )
 	// sorting a target range in array using "shell_sort" algorithm
 	template<typename type> void shell_sort(
 		type* arr , 
@@ -25,52 +28,94 @@ namespace sort {
 		bool (*compare_function)(type const& target , type const& other_element)
 	) {
 
-		// gap_factor it's the first chosen distance between the elements in array
+		// if range invalid , we need to stop 
+		if (start_index >= end_index) return;
+
+		// gap_size it's the first chosen distance between the elements in array
 		// it will decrease each time 
-		int gap_factor = (int)((end_index - start_index) / 2 );
+		int gap_size = (int)((end_index - start_index) / 2 );
 
-		int index_1 , index_2;
+		// if gap_size is 0 , that's mean it's a rare case where there's a only 2 elements in range
+		// so the process would be simpler 
+		if (gap_size == 0) {
 
-		while ( gap_factor >= 1 ) {
+			// comparison , then swap if it need
+			if ( !compare_function(arr[start_index], arr[end_index]) ) {
 
-			index_1 = start_index;
-			index_2 = gap_factor;
-
-			while ( index_2 <= end_index ) {
-
-				if (compare_function(arr[index_1], arr[index_2])) {
-					index_1 += 1;
-					index_2 += 1;
-				}
-				else {
-
-					swap<type>(arr[index_1], arr[index_2]);
-
-					index_2 = index_1;
-					index_1 -= gap_factor;
-
-					while ( index_1 >= start_index ) {
-
-						if (!compare_function(arr[index_1], arr[index_2])) {
-
-							swap<type>(arr[index_1], arr[index_2]);
-
-							index_2 = index_1;
-							index_1 -= gap_factor;
-
-						}
-						else break;
-
-					}
-
-					index_1 += gap_factor + 1;
-					index_2 = index_1 + gap_factor;
-				}
+				swap<type>(arr[start_index], arr[end_index]);
 
 			}
 
-			gap_factor -= 1;
+			return;
 		}
+
+
+		// index's used in loop it's like "i and j"
+		int index_1 , index_2;
+
+		// loop until that gap_size
+		while ( gap_size >= 1 ) {
+			
+			// set values to the counters 
+			// index_1 will be always start from start_index 
+			// index_2 will always start from gap_size
+			index_1 = start_index;  
+			index_2 = index_1 + gap_size;
+
+			// loop till the end and check
+			while ( index_2 <= (int)end_index ) {
+
+				// if comparison is valid , then just increment index's
+				if (compare_function(arr[index_1], arr[index_2])) {
+
+					index_1 += 1;
+					index_2 += 1;
+
+				}
+				else { // if comparison not valid
+
+					// swap elements
+					swap<type>(arr[index_1], arr[index_2]);
+
+					// then go back
+					index_2 = index_1;
+					index_1 -= gap_size;
+
+					// loop until we find proper position for element at "index_2"
+					while ( index_1 >= (int)start_index) {
+
+						// if comparison not valid
+						if (!compare_function(arr[index_1], arr[index_2])) {
+
+							// swap elements , then calculate next index
+							swap<type>(arr[index_1], arr[index_2]);
+
+							// decrease index's
+							index_2 = index_1;
+							index_1 -= gap_size;
+
+						}
+						// if comparison is valid that mean we need to beak because we find correct spot
+						else break;
+
+					} // end of "searching back" loop
+
+
+					// update index's for next element's 
+					index_1 += gap_size + 1;
+					index_2 = index_1 + gap_size;
+
+				}
+
+
+			} // end of "search forward" loop
+
+
+			// decrease gap_size to be smaller for more comparsion's
+			gap_size -= 1;
+		
+
+		} // end of "shell sort" loop
 
 	}
 
