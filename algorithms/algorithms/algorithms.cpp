@@ -10,12 +10,13 @@
 #include "sort/insertion_sort.hpp"
 #include "sort/selection_sort.hpp"
 #include "sort/bubble_sort.hpp"
+#include "sort/shell_sort.hpp"
 
 #include "search/binary_search.hpp"
 #include "search/linear_search.hpp"
 */
 
-#include "sort/shell_sort.hpp"
+#include "sort/counting_sort.hpp"
 
 template<typename T> void print_array(T* arr, size_t const& length);
 
@@ -34,13 +35,13 @@ int main(){
     int arr[11] = { 11,10,9,8,7,6,5,4,3,2,1 };
     int arr[20] = { 120,999,890,700,6213,5156,42563,314,33234,9,-8,7,6,-5,4,-3,2,1 };
     */
-    int arr[7] = { 8,7,9,-3,10,2,1 };
+    unsigned int arr[10] = { 4,4,4,4,100, 4,20,50,4,4 };
 
-    print_array<int>(arr, (sizeof(arr) / sizeof(int)));
+    print_array<unsigned int>(arr, (sizeof(arr) / sizeof(int)));
 
-    sort::shell_sort<int>(arr, 0 , (size_t)(sizeof(arr) / sizeof(int))-1  , cp_fn);
+    sort::counting_sort(arr, (size_t)(sizeof(arr) / sizeof(int)) );
 
-    print_array<int>( arr , (sizeof(arr) / sizeof(int)) );
+    print_array<unsigned int>( arr , (sizeof(arr) / sizeof(int)) );
 
 
     return 0;
