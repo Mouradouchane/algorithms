@@ -142,8 +142,10 @@
     <ClCompile Include="algorithms.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="reverse\reverse.hpp" />
     <ClInclude Include="search\binary_search.hpp" />
     <ClInclude Include="search\linear_search.hpp" />
+    <ClInclude Include="sort\binary_insertion_sort.hpp" />
     <ClInclude Include="sort\bubble_sort.hpp" />
     <ClInclude Include="sort\counting_sort.hpp" />
     <ClInclude Include="sort\heap_sort.hpp" />
@@ -155,6 +157,7 @@
     <ClInclude Include="sort\radix_sort.hpp" />
     <ClInclude Include="sort\selection_sort.hpp" />
     <ClInclude Include="sort\shell_sort.hpp" />
+    <ClInclude Include="sort\tim_sort.hpp" />
     <ClInclude Include="sort\tree_sort.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

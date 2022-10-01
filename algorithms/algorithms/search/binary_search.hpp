@@ -4,10 +4,10 @@
 
 namespace search{
 
-	// private scope/namespace
+	// anonymouse namespace
 	namespace {
 
-		// o( 1 )
+		// o( log n )
 		// binary search process
 		template<typename T> void bin_search_process(
 
@@ -49,7 +49,7 @@ namespace search{
 
 		}
 
-	}
+	} // end of anonymouse scope
 
 
 	// public algorithms

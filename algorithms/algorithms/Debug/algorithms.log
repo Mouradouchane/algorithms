@@ -1,2 +1,9 @@
 ﻿  algorithms.cpp
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\binary_insertion_sort.hpp(94,12): warning C4018: '>': signed/unsigned mismatch
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\algorithms.cpp(46): message : see reference to function template instantiation 'void sort::binary_insertion_sort<int>(type *,const size_t &,const size_t &,bool (__cdecl *const &)(const type &,const type &))' being compiled
+          with
+          [
+              type=int
+          ]
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\binary_insertion_sort.hpp(99,33): warning C4018: '<': signed/unsigned mismatch
   algorithms.vcxproj -> C:\Users\devc\Desktop\cpp\algorithms\algorithms\Debug\algorithms.exe

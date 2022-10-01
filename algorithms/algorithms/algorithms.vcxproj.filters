@@ -19,6 +19,9 @@
     <Filter Include="search">
       <UniqueIdentifier>{9bbd24ab-3ad7-4c86-a80b-9c77c820a36d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="reverse">
+      <UniqueIdentifier>{94d84b00-82b5-49b2-b838-734757527f09}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="algorithms.cpp">
@@ -66,6 +69,15 @@
       <Filter>sort</Filter>
     </ClInclude>
     <ClInclude Include="sort\tree_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\tim_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="reverse\reverse.hpp">
+      <Filter>reverse</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\binary_insertion_sort.hpp">
       <Filter>sort</Filter>
     </ClInclude>
   </ItemGroup>
