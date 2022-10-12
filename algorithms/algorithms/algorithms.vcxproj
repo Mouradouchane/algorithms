@@ -153,6 +153,7 @@
     <ClInclude Include="sort\insertion_sort.hpp" />
     <ClInclude Include="sort\linear_sort.hpp" />
     <ClInclude Include="sort\merge_sort.hpp" />
+    <ClInclude Include="sort\merge_sort_inplace.hpp" />
     <ClInclude Include="sort\quick_sort.hpp" />
     <ClInclude Include="sort\radix_sort.hpp" />
     <ClInclude Include="sort\selection_sort.hpp" />

@@ -96,10 +96,6 @@ namespace sort {
 				// then preforme shift from p to mark index
 				shift_process<type>(arr, p, (int&)mark);
 
-				for (int i = start_index; i < end_index; i += 1) {
-					std::cout << arr[i] << " , ";
-				}
-				std::cout << "\n==================================\n";
 			}
 
 			// increment counter & mark

@@ -1,9 +1,20 @@
 ﻿  algorithms.cpp
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\binary_insertion_sort.hpp(94,12): warning C4018: '>': signed/unsigned mismatch
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\algorithms.cpp(46): message : see reference to function template instantiation 'void sort::binary_insertion_sort<int>(type *,const size_t &,const size_t &,bool (__cdecl *const &)(const type &,const type &))' being compiled
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\algorithms.cpp(58,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\algorithms.cpp(80,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\algorithms.cpp(64): message : see reference to function template instantiation 'void fill_array<int>(T *,size_t &,const T &,const T &)' being compiled
+          with
+          [
+              T=int
+          ]
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(93,13): warning C4018: '>': signed/unsigned mismatch
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(143): message : see reference to function template instantiation 'void sort::`anonymous-namespace'::binary_insertion_sort<type>(type *,const size_t &,const size_t &,bool (__cdecl *const &)(const type &,const type &))' being compiled
           with
           [
               type=int
           ]
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\binary_insertion_sort.hpp(99,33): warning C4018: '<': signed/unsigned mismatch
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\algorithms.cpp(67): message : see reference to function template instantiation 'void sort::tim_sort<int>(type *,const size_t &,const size_t &,bool (__cdecl *const &)(const type &,const type &))' being compiled
+          with
+          [
+              type=int
+          ]
   algorithms.vcxproj -> C:\Users\devc\Desktop\cpp\algorithms\algorithms\Debug\algorithms.exe

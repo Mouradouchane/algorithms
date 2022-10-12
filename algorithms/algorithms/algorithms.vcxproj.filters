@@ -80,5 +80,8 @@
     <ClInclude Include="sort\binary_insertion_sort.hpp">
       <Filter>sort</Filter>
     </ClInclude>
+    <ClInclude Include="sort\merge_sort_inplace.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
