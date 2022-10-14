@@ -57,7 +57,7 @@ int main(){
     bool sort_rslt = false;
     std::srand(std::time(0));
     int sizes[6] = { 350,200,523,1254,426,64};
-    int size  = sizes[rand() % 6 - 1];
+    int size  = sizes[ rand() % 5 ];
 
     int * arr = new int[size];
 

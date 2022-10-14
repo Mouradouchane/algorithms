@@ -1,4 +1,8 @@
 
+#include <vector>
+
+#pragma once 
+
 namespace sort {
 
 	// anonymouse namespace for tim sort functionalities
@@ -63,7 +67,7 @@ namespace sort {
 		}
 
 		// O( n ) --> O( n² )
-		// for sorting runs
+		// for sorting runs_stack
 		template<typename type> void binary_insertion_sort(
 			type* arr, // target array as pointer
 			size_t const& start_index,
@@ -106,28 +110,60 @@ namespace sort {
 		} // end of binary_insertion_sort algorithm
 
 
-		template<typename t> void merge_in_place(
+		// the process to merge tow runs_stack
+		template<typename t> void merge_process(
 			t * arr ,
-			size_t &start_index ,
-			size_t &mid_index   , // end index of range 1 & start of range 2
-			size_t &end_index   ,
-			bool (* const& compare_function)( t const& target , t const& other)
+			run_info &run1 ,
+			run_info &run2 , 
+			bool (* const& compare_function)( t const& target , t const& other )
 		) {
 
-			size_t shift_size = end_index - mid_index;
-			t* temp_range = new t[shift_size];
+			// size_t shift_size = run2.start_index - run1.start_index;
+			t * run_copy = new t[run1.end_index - run1.start_index];
+
+			// make copy of all elements in run1
+			for ( long int i = run1.start_index , c = 0; i <= run1.end_index ; i += 1 ,c += 1) {
+				run_copy[c] = arr[i];
+			}
+			
+			// start merge process
 
 
-
-
-			delete temp_range;
+			delete run_copy;
 		}
+
+		struct run_info {
+
+			public : 
+				long int start_index = -1; // start index of that run
+				long int end_index = -1;   // end index of that run
+
+				// run_case : mean the case of that run
+				/* cases
+					0 -> there's no information about that range
+					1 -> target range is sorted
+					2 -> target range is sorted but in reverse order
+					3 -> target range is unsorted
+				*/
+				short run_case = 0;     
+
+				// main constructor
+				run_info( long int start_index , long int end_index , short run_case ) {
+					this->start_index = start_index;
+					this->end_index   = end_index;
+					this->run_case    = run_case;
+				}
+				// def constructor
+				run_info(){}
+		};
+
+		static const short min_size_of_run = 32;
 
 	} // end of anonymouse namespace
 
-	static const short min_size_of_run = 32;
 
-
+	// O(n) --> O(n log n)
+	// tim sort algorithm with fixed size of each run
 	template<typename type> void tim_sort(
 		type* arr, // array as pointer
 		size_t const& start_index ,
@@ -138,17 +174,49 @@ namespace sort {
 
 		size_t range = end_index - start_index;
 
-		// if target range is less than or equal to "min_run_size -> 32"
+		// if range is less than or equal "32" just preform binary_insertion_sort and stop 
 		if ( range <= min_size_of_run) {
+
 			binary_insertion_sort<type>(arr, start_index, end_index, compare_function);
 			return;
+
 		}
 		
-		tim_sort<type>(arr, start_index, (size_t)(range / 2) - 1, compare_function);
-		tim_sort<type>(arr, (size_t)(range / 2) , end_index , compare_function);
-		
+		std::vector<run_info> runs_stack;
 
-		
+		// start sorting ranges and put them in stack of runs
+		long int r = start_index;
+		for ( ; (r + min_size_of_run ) <= end_index; r += min_size_of_run) {
+
+			// save that range in stack 
+			runs_stack.push_back( run_info(r, r + min_size_of_run , 0) );
+			// sort that range 
+			binary_insertion_sort<type>(arr, r, r + min_size_of_run, compare_function);
+
+		}
+
+		// if there's a small range in the end of range 
+		if (r < end_index) {
+
+			// save it in stack and sort it
+			runs_stack.push_back( run_info(r, r + end_index, 0) );
+			binary_insertion_sort<type>(arr, r, r + end_index, compare_function);
+
+		}
+
+		// after the sorting is done , now it's the time to start merging runs in stack
+		r = runs_stack.size() - 1;
+		for ( ; r >= 0 ; r -= 1 ) {
+
+			// merge runs
+			merge_process(arr, runs_stack[r], runs_stack[r + 1], compare_function);
+
+			runs_stack[r].end_index = runs_stack[r + 1].end_index; // update range of last run in stack
+			runs_stack.pop_back(); // remove last run from stack of runs
+
+		}
+
+
 	} // end of algorithm tim_sort
 
 
