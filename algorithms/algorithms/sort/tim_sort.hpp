@@ -8,6 +8,35 @@ namespace sort {
 	// anonymouse namespace for tim sort functionalities
 	namespace {
 
+		struct run_info {
+
+		public:
+			long int start_index = -1; // start index of that run
+			long int end_index = -1;   // end index of that run
+
+			// run_case : mean the case of that run
+			/* cases
+				0 -> there's no information about that range
+				1 -> target range is sorted
+				2 -> target range is sorted but in reverse order
+				3 -> target range is unsorted
+			*/
+			short run_case = 0;
+
+			// main constructor
+			run_info(long int start_index, long int end_index, short run_case) {
+				this->start_index = start_index;
+				this->end_index = end_index;
+				this->run_case = run_case;
+			}
+			// def constructor
+			run_info() {}
+		};
+
+
+		// size of min run
+		static const short min_size_of_run = 6;
+
 		// O( n )
 		// shifting process used by "binary insertion sort"
 		template<typename T> void shift_process(T* arr, int& start_index, int& end_index) {
@@ -88,12 +117,12 @@ namespace sort {
 					if compare_function return true, that's mean we need to search insert position
 					for element at mark index , then shift all elements in that range
 				*/
-				if (compare_function(arr[mark], arr[counter])) {
+				if ( compare_function(arr[mark], arr[counter]) ) {
 
 					// binary search for index where we arr[mark] should be
 					p = bin_search<type>(arr, arr[mark], start_index, (int)(mark - 1), compare_function);
 
-					p = (p < 0) ? 0 : p;
+					p = (p < start_index) ? start_index : p;
 					p = (p > mark) ? mark : p;
 
 					// then preforme shift from p to mark index
@@ -119,45 +148,55 @@ namespace sort {
 		) {
 
 			// size_t shift_size = run2.start_index - run1.start_index;
-			t * run_copy = new t[run1.end_index - run1.start_index];
+			t * run_copy = new t[run1.end_index - run1.start_index + 1];
 
 			// make copy of all elements in run1
-			for ( long int i = run1.start_index , c = 0; i <= run1.end_index ; i += 1 ,c += 1) {
+			for ( long int i = run1.start_index , c = 0 ; i <= run1.end_index ; i += 1 ,c += 1) {
 				run_copy[c] = arr[i];
 			}
 			
-			// start merge process
+			// start compare_process
+			long int cp = 0; // first index at "run_copy"
+			long int r1 = run1.start_index; // start index at run2
+			long int r2 = run2.start_index; // start index at run2
 
+			while ( true ) {
+
+				if ( !compare_function(run_copy[cp], arr[r2]) ) {
+
+					arr[r1] = arr[r2];
+					r2 += 1;
+
+				}
+				else {
+
+					arr[r1] = run_copy[cp];
+					cp += 1;
+				}
+
+				r1 += 1;
+
+				if ( r1 > run2.end_index || r2 > run2.end_index) break;
+
+			}
+
+			// if still there's elements in run_copy
+			// those elements should moved to lefted part in run
+			if (r2 > run2.end_index && cp < (run1.end_index - run1.start_index) ) {
+
+				while (r1 <= run2.end_index) {
+
+					arr[r1] = run_copy[cp];
+
+					r1 += 1;
+					cp += 1;
+				}
+
+			}
 
 			delete run_copy;
+		
 		}
-
-		struct run_info {
-
-			public : 
-				long int start_index = -1; // start index of that run
-				long int end_index = -1;   // end index of that run
-
-				// run_case : mean the case of that run
-				/* cases
-					0 -> there's no information about that range
-					1 -> target range is sorted
-					2 -> target range is sorted but in reverse order
-					3 -> target range is unsorted
-				*/
-				short run_case = 0;     
-
-				// main constructor
-				run_info( long int start_index , long int end_index , short run_case ) {
-					this->start_index = start_index;
-					this->end_index   = end_index;
-					this->run_case    = run_case;
-				}
-				// def constructor
-				run_info(){}
-		};
-
-		static const short min_size_of_run = 32;
 
 	} // end of anonymouse namespace
 
@@ -193,26 +232,44 @@ namespace sort {
 			// sort that range 
 			binary_insertion_sort<type>(arr, r, r + min_size_of_run, compare_function);
 
+			std::cout << '\n';
+			std::cout << "Binary Insetion Sort :" << r << " - " << r + min_size_of_run << '\n';
+			for (long int i = r; i <= r + min_size_of_run; i += 1) std::cout << arr[i] << " ,";
+			std::cout << '\n';
+
+			r += 1;
 		}
 
 		// if there's a small range in the end of range 
 		if (r < end_index) {
 
 			// save it in stack and sort it
-			runs_stack.push_back( run_info(r, r + end_index, 0) );
-			binary_insertion_sort<type>(arr, r, r + end_index, compare_function);
+			runs_stack.push_back( run_info(r, end_index , 0) );
+			binary_insertion_sort<type>(arr, r, end_index , compare_function);
 
+			std::cout << '\n';
+			std::cout << "Binary Insetion Sort :" << r << " - " << r + min_size_of_run << '\n';
+			for (long int i = r; i <= end_index; i += 1 ) std::cout << arr[i] << " ,";
+			std::cout << '\n';
 		}
 
 		// after the sorting is done , now it's the time to start merging runs in stack
-		r = runs_stack.size() - 1;
+		r = runs_stack.size() - 2;
 		for ( ; r >= 0 ; r -= 1 ) {
 
 			// merge runs
 			merge_process(arr, runs_stack[r], runs_stack[r + 1], compare_function);
 
-			runs_stack[r].end_index = runs_stack[r + 1].end_index; // update range of last run in stack
-			runs_stack.pop_back(); // remove last run from stack of runs
+			// update stack
+			runs_stack[r].end_index = runs_stack[r + 1].end_index; 
+			// remove last run from stack
+			runs_stack.pop_back(); 
+
+			std::cout << '\n';
+			std::cout << "Merge Process ::" << runs_stack[r].start_index << " - " << runs_stack[r].end_index << '\n';
+			for (long int i = runs_stack[r].start_index ; i <= runs_stack[r].end_index ; i += 1) std::cout << arr[i] << " ,";
+			std::cout << '\n';
+
 
 		}
 

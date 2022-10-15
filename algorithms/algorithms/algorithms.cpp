@@ -57,20 +57,26 @@ int main(){
     bool sort_rslt = false;
     std::srand(std::time(0));
     int sizes[6] = { 350,200,523,1254,426,64};
-    int size  = sizes[ rand() % 5 ];
+    int size = 20;
+    // int size = sizes[ rand() % 5 ];
 
-    int * arr = new int[size];
+    int arr[20] = { 120,999,890,700,6213,5156,42563,314,33234,9,-8,7,6,-5,4,-3,2,1 };
 
-    fill_array<int>(arr, (size_t&)size , 1 , 5464 );
+    fill_array<int>(arr, (size_t&)size , 1 , 40 );
     // print_array< int>(arr, (sizeof(arr) / sizeof(int)));
+
+    std::cout << "Generated Data Is ::\n";
+    print_array_and_check<int>(arr, (size_t)size - 1, sort_rslt, cp_fn);
 
     sort::tim_sort<int>(arr, 0, (size_t)size - 1 , cp_fn);
 
+    std::cout << '\n';
+    std::cout << "Sorting Result Is ::\n";
     print_array_and_check<int>( arr , (size_t)size -1 , sort_rslt , cp_fn);
-    std::cout << "sorting result is -> " << (sort_rslt ? "true" : "false") << '\n';
-    std::cout << "size : " << size << '\n';
+    std::cout << "Sorting Is ::\n" << (sort_rslt ? "true" : "false") << '\n';
 
-    delete arr;
+
+    // delete arr;
 
     return 0;
 }
@@ -102,12 +108,14 @@ template<typename T> void print_array_and_check(
     ) {
 
     is_sorted = true;
-    for (size_t i = 0 , c = 1 ; i < length ; i += 1 , c = i <= (length-1) ? c + 1 : c ) {
 
-        if (!compare_function(arr[i], arr[c]) && is_sorted != NULL) is_sorted = false;
-        std::cout << arr[i] << '\n';
+    for (size_t i = 0 , c = 1 ; i < length ; i += 1 , c = c + 1 ) {
+
+        if (arr[i] != arr[c] && !compare_function(arr[i], arr[c]) && is_sorted != NULL) is_sorted = false;
+        std::cout << arr[i] << " ,";
+
     }
 
-    std::cout << '\n';
+    std::cout << arr[length] << '\n';
 
 }

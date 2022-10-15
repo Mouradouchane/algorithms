@@ -90,7 +90,7 @@ namespace sort {
 				// binary search for index where we arr[mark] should be
 				p = bin_search<type>(arr, arr[mark] , start_index, (int)(mark-1), compare_function);
 
-				p = (p < 0) ? 0 : p;
+				p = (p < start_index) ? start_index : p;
 				p = (p > mark) ? mark : p;
 
 				// then preforme shift from p to mark index
