@@ -15,6 +15,7 @@
 #include "sort/shell_sort.hpp"
 #include "sort/counting_sort.hpp"
 #include "sort/binary_insertion_sort.hpp"
+#include "sort/tim_sort.hpp"
 
 #include "search/binary_search.hpp"
 #include "search/linear_search.hpp"
@@ -22,7 +23,7 @@
 #include "reverse/reverse.hpp"
 */
 
-#include "sort/tim_sort.hpp"
+#include "sort/tree_sort.hpp"
 
 
 template<typename T> void print_array(T* arr, size_t const& length);
@@ -57,10 +58,10 @@ int main(){
     bool sort_rslt = false;
     std::srand(std::time(0));
     int sizes[6] = { 350,200,523,1254,426,64};
-    int size = 201;
+    int size = 17;
     // int size = sizes[ rand() % 5 ];
 
-    int arr[201] = { 120,999,890,700,613,9,7,6,-5,4,-3,2,1,5156,425,314,334,9,};
+    int arr[17] = {};
 
     fill_array<int>(arr, (size_t&)size , -2 , 40 );
     // print_array< int>(arr, (sizeof(arr) / sizeof(int)));
@@ -68,7 +69,7 @@ int main(){
     std::cout << "Generated Data Is ::\n";
     print_array_and_check<int>(arr, (size_t)size - 1, sort_rslt, cp_fn);
 
-    sort::tim_sort<int>(arr, 0, (size_t)size - 1 , cp_fn);
+    sort::tree_sort<int>(arr, 0, (size_t)size - 1 , cp_fn);
 
     std::cout << '\n';
     std::cout << "Sorting Result Is ::\n";

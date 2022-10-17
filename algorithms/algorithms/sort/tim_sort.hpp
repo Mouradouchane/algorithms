@@ -97,7 +97,7 @@ namespace sort {
 		}
 
 		// O( n ) --> O( n² )
-		// for sorting runs_stack
+		// for sorting runs
 		template<typename type> void binary_insertion_sort(
 			type* arr, // target array as pointer
 			size_t const& start_index,
@@ -139,8 +139,8 @@ namespace sort {
 
 		} // end of binary_insertion_sort algorithm
 
-
-		// the process to merge tow runs_stack
+		// O( n )
+		// for merging runs
 		template<typename t> void merge_process(
 			t * arr ,
 			run_info &run1 ,
@@ -148,18 +148,25 @@ namespace sort {
 			bool (* const& compare_function)( t const& target , t const& other )
 		) {
 
+			// calc size of run1
 			size_t copy_size = run1.end_index - run1.start_index + 1;
+
+			// new array to copy elements in run1 
+			// for merging process
 			t * run_copy = new t[ copy_size ];
 
-			// make copy of run1
+			// copy run1 elements 
 			for ( long int i = run1.start_index , c = 0 ; i <= run1.end_index; i += 1 ,c += 1) {
 				run_copy[c] = arr[i];
 			}
 			
-			// start compare_process
-			long int cp = 0; // first index at "run_copy"
-			long int r1 = run1.start_index; // start index at run2
-			long int r2 = run2.start_index; // start index at run2
+			/*
+				start merging process
+			*/
+
+			long int cp = 0; // counter for "run_copy"
+			long int r1 = run1.start_index; // counter for run1
+			long int r2 = run2.start_index; // counter for run2
 
 			while ( true ) {
 
@@ -179,14 +186,16 @@ namespace sort {
 
 				}
 
+				// increment r1 counter in both cases
 				r1 += 1;
 
+				// if one of counters is out of range we break merging process here
 				if ( r1 > run2.end_index || r2 > run2.end_index || cp > copy_size-1 ) break;
 
 			}
 
-			// if still there's elements in run_copy
-			// those elements should moved to lefted part in run
+			// if there's a remaining elements after merging process is done
+			// then , we should move them to the run
 			if ( r2 > run2.end_index && cp < copy_size ) {
 
 				while ( r1 <= run2.end_index && cp <= copy_size ) {
@@ -199,6 +208,7 @@ namespace sort {
 
 			}
 
+			// delete copy from heap after we done
 			delete run_copy;
 		
 		}
@@ -216,46 +226,42 @@ namespace sort {
 		bool (* const& compare_function)(type const& target_element, type const& other_element)
 	) {
 
+		// calc size of range
 		size_t range = end_index - start_index;
 
-		// if range is less than or equal "32" just preform binary_insertion_sort and stop 
+		// if range is less than or equal to "min_run" , just preform "binary_insertion_sort"
 		if ( range <= min_size_of_run) {
 
 			binary_insertion_sort<type>(arr, start_index, end_index, compare_function);
 			return;
 
 		}
-		
+
+		// a stack of runs important for merging runs later after sorting 
 		std::vector<run_info> runs_stack;
 
 		// start sorting ranges and put them in stack of runs
 		long int r = start_index;
 		for ( ; (r + min_size_of_run ) <= end_index; r += min_size_of_run) {
 
-			// save that range in stack 
+			// push that range in stack 
 			runs_stack.push_back( run_info(r, r + min_size_of_run , 0) );
+
 			// sort that range 
 			binary_insertion_sort<type>(arr, r, r + min_size_of_run, compare_function);
-
-			std::cout << '\n';
-			std::cout << "Binary Insetion Sort :" << r << " - " << r + min_size_of_run << '\n';
-			for (long int i = r; i <= r + min_size_of_run; i += 1) std::cout << arr[i] << " ,";
-			std::cout << '\n';
 
 			r += 1;
 		}
 
-		// if there's a small range in the end of range 
+		// if still there's a few element's in the end of range
 		if (r < end_index) {
 
-			// save it in stack and sort it
+			// push it into stack
 			runs_stack.push_back( run_info(r, end_index , 0) );
+
+			// then sort it 
 			binary_insertion_sort<type>(arr, r, end_index , compare_function);
 
-			std::cout << '\n';
-			std::cout << "Binary Insetion Sort :" << r << " - " << r + min_size_of_run << '\n';
-			for (long int i = r; i <= end_index; i += 1 ) std::cout << arr[i] << " ,";
-			std::cout << '\n';
 		}
 
 		// after the sorting is done , now it's the time to start merging runs in stack
@@ -267,14 +273,9 @@ namespace sort {
 
 			// update stack
 			runs_stack[r].end_index = runs_stack[r + 1].end_index; 
+
 			// remove last run from stack
 			runs_stack.pop_back(); 
-
-
-			std::cout << '\n';
-			std::cout << "Merge Process ::" << runs_stack[r].start_index << " - " << runs_stack[r].end_index << '\n';
-			for (long int i = runs_stack[r].start_index ; i <= runs_stack[r].end_index ; i += 1) std::cout << arr[i] << " ,";
-			std::cout << '\n';
 
 		}
 
