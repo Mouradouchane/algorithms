@@ -57,12 +57,12 @@ int main(){
     bool sort_rslt = false;
     std::srand(std::time(0));
     int sizes[6] = { 350,200,523,1254,426,64};
-    int size = 20;
+    int size = 201;
     // int size = sizes[ rand() % 5 ];
 
-    int arr[20] = { 120,999,890,700,6213,5156,42563,314,33234,9,-8,7,6,-5,4,-3,2,1 };
+    int arr[201] = { 120,999,890,700,613,9,7,6,-5,4,-3,2,1,5156,425,314,334,9,};
 
-    fill_array<int>(arr, (size_t&)size , 1 , 40 );
+    fill_array<int>(arr, (size_t&)size , -2 , 40 );
     // print_array< int>(arr, (sizeof(arr) / sizeof(int)));
 
     std::cout << "Generated Data Is ::\n";

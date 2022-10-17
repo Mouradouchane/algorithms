@@ -8,6 +8,7 @@ namespace sort {
 	// anonymouse namespace for tim sort functionalities
 	namespace {
 
+		// run object : to contain run start,end,case
 		struct run_info {
 
 		public:
@@ -35,7 +36,7 @@ namespace sort {
 
 
 		// size of min run
-		static const short min_size_of_run = 6;
+		static const short min_size_of_run = 16;
 
 		// O( n )
 		// shifting process used by "binary insertion sort"
@@ -147,11 +148,11 @@ namespace sort {
 			bool (* const& compare_function)( t const& target , t const& other )
 		) {
 
-			// size_t shift_size = run2.start_index - run1.start_index;
-			t * run_copy = new t[run1.end_index - run1.start_index + 1];
+			size_t copy_size = run1.end_index - run1.start_index + 1;
+			t * run_copy = new t[ copy_size ];
 
-			// make copy of all elements in run1
-			for ( long int i = run1.start_index , c = 0 ; i <= run1.end_index ; i += 1 ,c += 1) {
+			// make copy of run1
+			for ( long int i = run1.start_index , c = 0 ; i <= run1.end_index; i += 1 ,c += 1) {
 				run_copy[c] = arr[i];
 			}
 			
@@ -162,29 +163,33 @@ namespace sort {
 
 			while ( true ) {
 
+				// if element in run2 smaller than element in run1
 				if ( !compare_function(run_copy[cp], arr[r2]) ) {
 
+					// put element from run2 in run1
 					arr[r1] = arr[r2];
 					r2 += 1;
 
 				}
-				else {
+				else { // else mean element in run1 is smaller
 
+					// put element from copy_run in run1
 					arr[r1] = run_copy[cp];
 					cp += 1;
+
 				}
 
 				r1 += 1;
 
-				if ( r1 > run2.end_index || r2 > run2.end_index) break;
+				if ( r1 > run2.end_index || r2 > run2.end_index || cp > copy_size-1 ) break;
 
 			}
 
 			// if still there's elements in run_copy
 			// those elements should moved to lefted part in run
-			if (r2 > run2.end_index && cp < (run1.end_index - run1.start_index) ) {
+			if ( r2 > run2.end_index && cp < copy_size ) {
 
-				while (r1 <= run2.end_index) {
+				while ( r1 <= run2.end_index && cp <= copy_size ) {
 
 					arr[r1] = run_copy[cp];
 
@@ -265,11 +270,11 @@ namespace sort {
 			// remove last run from stack
 			runs_stack.pop_back(); 
 
+
 			std::cout << '\n';
 			std::cout << "Merge Process ::" << runs_stack[r].start_index << " - " << runs_stack[r].end_index << '\n';
 			for (long int i = runs_stack[r].start_index ; i <= runs_stack[r].end_index ; i += 1) std::cout << arr[i] << " ,";
 			std::cout << '\n';
-
 
 		}
 

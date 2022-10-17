@@ -6,16 +6,16 @@ C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\algorithms.cpp(65): m
           [
               T=int
           ]
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(228,34): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(233,34): warning C4018: '<=': signed/unsigned mismatch
 C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\algorithms.cpp(71): message : see reference to function template instantiation 'void sort::tim_sort<int>(type *,const size_t &,const size_t &,bool (__cdecl *const &)(const type &,const type &))' being compiled
           with
           [
               type=int
           ]
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(244,9): warning C4018: '<': signed/unsigned mismatch
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(252,27): warning C4018: '<=': signed/unsigned mismatch
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(125,13): warning C4018: '<': signed/unsigned mismatch
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(219): message : see reference to function template instantiation 'void sort::`anonymous-namespace'::binary_insertion_sort<type>(type *,const size_t &,const size_t &,bool (__cdecl *const &)(const type &,const type &))' being compiled
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(249,9): warning C4018: '<': signed/unsigned mismatch
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(257,27): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(126,13): warning C4018: '<': signed/unsigned mismatch
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(224): message : see reference to function template instantiation 'void sort::`anonymous-namespace'::binary_insertion_sort<type>(type *,const size_t &,const size_t &,bool (__cdecl *const &)(const type &,const type &))' being compiled
           with
           [
               type=int
@@ -25,5 +25,14 @@ C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\algorithms.cpp(71): m
           [
               type=int
           ]
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(126,13): warning C4018: '>': signed/unsigned mismatch
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(127,13): warning C4018: '>': signed/unsigned mismatch
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(184,59): warning C4018: '>': signed/unsigned mismatch
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(266): message : see reference to function template instantiation 'void sort::`anonymous-namespace'::merge_process<type>(t *,sort::`anonymous-namespace'::run_info &,sort::`anonymous-namespace'::run_info &,bool (__cdecl *const &)(const t &,const t &))' being compiled
+          with
+          [
+              type=int,
+              t=int
+          ]
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(190,35): warning C4018: '<': signed/unsigned mismatch
+C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms\sort\tim_sort.hpp(192,40): warning C4018: '<=': signed/unsigned mismatch
   algorithms.vcxproj -> C:\Users\devc\Desktop\cpp\algorithms\algorithms\Debug\algorithms.exe
