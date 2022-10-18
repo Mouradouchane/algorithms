@@ -77,7 +77,7 @@ namespace sort {
 		while (mark < end) {
 
 			/*
-				if compare_function return true, that's mean we need to search insert position 
+				if compare_function return true, that's mean we need to search insert_process position 
 				for element at mark index , then shift all elements in that range
 			*/
 			if ( compare_function(arr[mark], arr[counter])) {

@@ -34,11 +34,11 @@ namespace sort {
 
 					// compare element from start_index array & element from end_index array
 					if (compare_function(l_array[l], r_array[r])) {
-						// if true insert start_index element
+						// if true insert_process start_index element
 						new_arr[n] = l_array[l];
 						l += 1;
 					}
-					else { // otherwise insert end_index element
+					else { // otherwise insert_process end_index element
 						new_arr[n] = r_array[r];
 						r += 1;
 					}

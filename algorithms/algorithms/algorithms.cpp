@@ -58,26 +58,26 @@ int main(){
     bool sort_rslt = false;
     std::srand(std::time(0));
     int sizes[6] = { 350,200,523,1254,426,64};
-    int size = 17;
     // int size = sizes[ rand() % 5 ];
+    int size = 21;
 
-    int arr[17] = {};
+    int* arr = new int[size];
 
-    fill_array<int>(arr, (size_t&)size , -2 , 40 );
+    fill_array<int>(arr, (size_t&)size , 0 , 40 );
     // print_array< int>(arr, (sizeof(arr) / sizeof(int)));
 
     std::cout << "Generated Data Is ::\n";
     print_array_and_check<int>(arr, (size_t)size - 1, sort_rslt, cp_fn);
 
-    sort::tree_sort<int>(arr, 0, (size_t)size - 1 , cp_fn);
+    sort::tree_sort<int>(arr, 0, size-1 , cp_fn);
 
     std::cout << '\n';
     std::cout << "Sorting Result Is ::\n";
     print_array_and_check<int>( arr , (size_t)size -1 , sort_rslt , cp_fn);
-    std::cout << "Sorting Is ::\n" << (sort_rslt ? "true" : "false") << '\n';
+    std::cout << "\nSorting Is :: " << (sort_rslt ? "true" : "false") << '\n';
 
 
-    // delete arr;
+    delete arr;
 
     return 0;
 }

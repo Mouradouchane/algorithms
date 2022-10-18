@@ -59,7 +59,7 @@ namespace sort {
 		}
 
 		// O( log n )
-		// binary search process to get position of where we should insert in insertion process
+		// binary search process to get position of where we should insert_process in insertion process
 		template<typename T> int bin_search(
 
 			T* arr, // target array as pointer
@@ -115,7 +115,7 @@ namespace sort {
 			while (mark <= end_index) {
 
 				/*
-					if compare_function return true, that's mean we need to search insert position
+					if compare_function return true, that's mean we need to search insert_process position
 					for element at mark index , then shift all elements in that range
 				*/
 				if ( compare_function(arr[mark], arr[counter]) ) {
