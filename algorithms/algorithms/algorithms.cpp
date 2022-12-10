@@ -5,7 +5,6 @@
 /*
 #include "sort/heap_sort.hpp"
 #include "sort/linear_sort.hpp"
-#include "sort/quick_sort.hpp"
 #include "sort/merge_sort.hpp"
 #include "sort/hierarchical_sorting.hpp"
 #include "sort/radix_sort.hpp"
@@ -21,9 +20,10 @@
 #include "search/linear_search.hpp"
 
 #include "reverse/reverse.hpp"
+#include "sort/tree_sort.hpp"
 */
 
-#include "sort/tree_sort.hpp"
+#include "sort/quick_sort.hpp"
 
 
 template<typename T> void print_array(T* arr, size_t const& length);
@@ -45,7 +45,7 @@ bool cp_fn( int const& target, int const& element ) {
     return target < element;
 }
 
-int main(){
+int main() {
 
     /*
     int arr[9] = { 4,88,-1,5,-5,47,0,61,1 };
@@ -55,29 +55,37 @@ int main(){
     int arr[11] = { 11,10,9,8,7,6,5,4,3,2,1 };
     int arr[10] = { 3,7,6,5,4,0,9,8,1,11 };
     */
+    int testing = 0;
+    int max_tests = 10;
+    while(++testing < max_tests){
+        std::cout << "=============================================" << std::endl;
+
     bool sort_rslt = false;
+
     std::srand(std::time(0));
-    int sizes[6] = { 350,200,523,1254,426,64};
-    // int size = sizes[ rand() % 5 ];
+
+    int sizes[6] = { 350,200,523,1254,426,64 };
     int size = 21;
 
     int* arr = new int[size];
 
-    fill_array<int>(arr, (size_t&)size , 0 , 40 );
-    // print_array< int>(arr, (sizeof(arr) / sizeof(int)));
+    fill_array<int>(arr, (size_t&)size, 0, 40);
 
     std::cout << "Generated Data Is ::\n";
     print_array_and_check<int>(arr, (size_t)size - 1, sort_rslt, cp_fn);
 
-    sort::tree_sort<int>(arr, 0, size-1 , cp_fn);
+    sort::quick_sort<int>(arr, 0, size - 1, cp_fn);
 
     std::cout << '\n';
     std::cout << "Sorting Result Is ::\n";
-    print_array_and_check<int>( arr , (size_t)size -1 , sort_rslt , cp_fn);
+
+    print_array_and_check<int>(arr, (size_t)size - 1, sort_rslt, cp_fn);
     std::cout << "\nSorting Is :: " << (sort_rslt ? "true" : "false") << '\n';
 
 
     delete arr;
+
+    }
 
     return 0;
 }

@@ -42,12 +42,14 @@ namespace sort {
 				// loop using i and search for bigger element than pivot
 				while ( !compare_function(arr[pv], arr[i]) ) {
 					i += 1;
+					if (i >= right) break;
 				}
 
 				// from right to left
 				// loop using j and search for smaller element than pivot
 				while ( compare_function(arr[pv], arr[j]) ) {
 					j -= 1;
+					if (j <= left) break;
 				}
 
 				// swap only if i less than j
@@ -59,20 +61,16 @@ namespace sort {
 
 			}
 
-			// if j less than left that mean swap must be done with pivot and left element 
-			// becuase j is out of range
-			if (j < left) {
-				swap<T>(arr[pv], arr[left]);
-				return left;
-			}
-			// otherwise , just a normal swap between pivot and j
-			else {
+			// put pivot in it's correct index
+			if (j != left) {
 				swap<T>(arr[pv], arr[j]);
 				return j;
 			}
-
+			// else mean pivot in correct spot wich is left 
+			else return left;
+			
 		}
-
+		// end of parition function
 
 	} // end of private namespace
 
