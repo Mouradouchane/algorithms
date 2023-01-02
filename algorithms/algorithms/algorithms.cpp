@@ -2,10 +2,10 @@
 #include <cstdlib>  //required for rand(), srand()
 #include <ctime>    //required for time()
 
+#include "sort/merge_sort.hpp"
 /*
 #include "sort/heap_sort.hpp"
 #include "sort/linear_sort.hpp"
-#include "sort/merge_sort.hpp"
 #include "sort/hierarchical_sorting.hpp"
 #include "sort/radix_sort.hpp"
 #include "sort/insertion_sort.hpp"
@@ -62,7 +62,6 @@ int main() {
 
     bool sort_rslt = false;
 
-    std::srand(std::time(0));
 
     int sizes[6] = { 350,200,523,1254,426,64 };
     int size = 21;
@@ -74,7 +73,7 @@ int main() {
     std::cout << "Generated Data Is ::\n";
     print_array_and_check<int>(arr, (size_t)size - 1, sort_rslt, cp_fn);
 
-    sort::quick_sort<int>(arr, 0, size - 1, cp_fn);
+    arr = sort::merge_sort<int>(arr, 0, size - 1, cp_fn);
 
     std::cout << '\n';
     std::cout << "Sorting Result Is ::\n";
@@ -94,7 +93,7 @@ template<typename T> void fill_array(T* arr, size_t& size , T const& min_value ,
 
     std::srand(std::time(0));
 
-    for (size_t i = 0; i < size; i += 1) arr[i] = (rand() % max_value + min_value);
+    for (size_t i = 0; i < size; i += 1) arr[i] = (std::rand() % max_value + min_value);
 
 
 }

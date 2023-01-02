@@ -15,7 +15,7 @@ namespace sort {
 			T* r_array, // end_index array you want to merge
 			int l_size, // size of start_index  array
 			int r_size, // size of end_index array
-			bool (*&compare_function)(T const& a, T const& b) // function used in comparison 
+			bool (* const& compare_function)(T const& a, T const& b) // function used in comparison 
 		){
 		
 			// allocated at the heap new array with size of the tow arrays
@@ -54,13 +54,13 @@ namespace sort {
 
 			// if l is still in range that mean there's still elements in start_index array need to get inserted
 			if (l < l_size) {
-				for (l; l < l_size; l += 1 , n += 1) {
+				for ( ; l < l_size; l += 1 , n += 1) {
 					new_arr[n] = l_array[l];
 				}
 			}
 			// if r is still in range that mean there's still elements in end_index array need to get inserted
 			if (r < r_size) {
-				for (r; r < r_size; r += 1 , n += 1) {
+				for ( ; r < r_size; r += 1 , n += 1) {
 					new_arr[n] = r_array[r];
 				}
 			}
@@ -84,45 +84,28 @@ namespace sort {
 		T* arr   , // target array
 		int   left  , // beginning of range you want to sort  
 		int   right , // end of range you want to sort  
-		bool (*compare_function)( T const& a, T const& b ) // function we used to compare elements
+		bool (* const& compare_function)( T const& a, T const& b ) // function we used to compare elements
 	) {
 
 		// if target range greated than 2
-		if ((right - left + 1) > 2) {
+		if ((right - left + 1) > 1) {
 
 			// calc index of mid element
 			int mid = (right + left) / 2;
 
 			// recursive process from "start_index --> mid" and "mid+1 --> end_index"
-			T * l_arr = merge_sort<T>(arr, left, mid, compare_function);
-			T * r_arr = merge_sort<T>(arr, mid+1, right, compare_function);
+			T* l_arr = merge_sort<T>(arr, left, mid, compare_function);
+			T* r_arr = merge_sort<T>(arr, mid + 1, right, compare_function);
 
 			// after split done using recursive now it's the time to preforme sorting/merging 
-			return merge_process<T>( l_arr, r_arr , mid - left + 1 , right - mid , compare_function);
+			return merge_process<T>(l_arr, r_arr, (mid - left + 1) , (right - mid) , compare_function);
 
 		}
-
-		// else mean range contain 2 or 1 element
-		// allocate new array at the heap
-		T * new_arr = new T[sizeof(T) * (right - left + 1)];
-
-		// if 2 elements preforme direct comparison
-		if ((right - left + 1) == 2) {
-			if ( compare_function(arr[left], arr[right]) ) {
-				new_arr[0] = arr[left];
-				new_arr[1] = arr[right];
-			}
-			else {
-				new_arr[0] = arr[right];
-				new_arr[1] = arr[left];
-			}
+		else {
+			T* element = new T[sizeof(T)];
+			element[0] = arr[left];
+			return element;
 		}
-		else { // put element directly 
-			new_arr[0] = arr[left];
-		}
-
-		// return that new array
-		return new_arr;
 	}
 
 } // end of namespace sort
