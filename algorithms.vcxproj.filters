@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="sort">
+      <UniqueIdentifier>{fd7b30ef-1f23-48d8-9bf3-46821164d6ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="search">
+      <UniqueIdentifier>{9bbd24ab-3ad7-4c86-a80b-9c77c820a36d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="reverse">
+      <UniqueIdentifier>{94d84b00-82b5-49b2-b838-734757527f09}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="algorithms.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sort\linear_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\quick_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\radix_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="search\binary_search.hpp">
+      <Filter>search</Filter>
+    </ClInclude>
+    <ClInclude Include="search\linear_search.hpp">
+      <Filter>search</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\hierarchical_sorting.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\heap_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\insertion_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\merge_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\selection_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\bubble_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\counting_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\shell_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\tree_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\tim_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="reverse\reverse.hpp">
+      <Filter>reverse</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\binary_insertion_sort.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+    <ClInclude Include="sort\merge_sort_inplace.hpp">
+      <Filter>sort</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
