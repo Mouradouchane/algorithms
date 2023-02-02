@@ -2,8 +2,8 @@
 #include <cstdlib>  //required for rand(), srand()
 #include <ctime>    //required for time()
 
-#include "sort/merge_sort.hpp"
 /*
+#include "sort/merge_sort.hpp"
 #include "sort/heap_sort.hpp"
 #include "sort/linear_sort.hpp"
 #include "sort/hierarchical_sorting.hpp"
@@ -15,15 +15,16 @@
 #include "sort/counting_sort.hpp"
 #include "sort/binary_insertion_sort.hpp"
 #include "sort/tim_sort.hpp"
+#include "sort/quick_sort.hpp"
+#include "sort/tree_sort.hpp"
 
 #include "search/binary_search.hpp"
 #include "search/linear_search.hpp"
 
 #include "reverse/reverse.hpp"
-#include "sort/tree_sort.hpp"
 */
 
-#include "sort/quick_sort.hpp"
+#include "sort/merge_sort_inplace.hpp"
 
 
 template<typename T> void print_array(T* arr, size_t const& length);
@@ -73,7 +74,7 @@ int main() {
     std::cout << "Generated Data Is ::\n";
     print_array_and_check<int>(arr, (size_t)size - 1, sort_rslt, cp_fn);
 
-    arr = sort::merge_sort<int>(arr, 0, size - 1, cp_fn);
+    sort::merge_sort_inplace<int>(arr, 0, size - 1, cp_fn);
 
     std::cout << '\n';
     std::cout << "Sorting Result Is ::\n";

@@ -17,7 +17,7 @@ namespace sort {
 		}
 
 		// O( n )
-		template<typename T> void shift_process_inplace(T* arr, int& start_index, int& end_index) {
+		template<typename T> void shift_process(T* arr, int& start_index, int& end_index) {
 
 			// get target element
 			T target = arr[end_index];
@@ -37,52 +37,52 @@ namespace sort {
 
 		// O( n )
 		// sort elements in place using shifting function
-		template<typename T> void sort_process_inplace(
-			T* arr, // target array
-			int start, // start index
-			int mid, // mid index
-			int end, // end index
+		template<typename T> void sort_process(
+			T*  arr,	// target array
+			int start,	// start index
+			int mid,	// mid index
+			int end,	// end index
 			bool (*&compare_function)(T const& a, T const& b) // to compare elements
 		) {
 
-			int i = start; // index of first element
-			int j = mid; // index of mid element
+			int L = start;	// index of first element
+			int R = mid;	// index of mid element
 
 			// while i in range
-			while (i < end) {
+			while (L < end) {
 
 				// i == j no need to for comparison :)
-				if (i == j) {
-					i += 1;
+				if (L == R) {
+					L += 1;
 					continue;
 				}
 
 				// if range invalid
-				if (i < j && !compare_function(arr[i], arr[j])) {
+				if (L < R && !compare_function(arr[L], arr[R])) {
 
 					// shit from i to j
-					shift_process_inplace<T>(arr, i, j);
-					// then increment i & j for next range
-					i += 1;
-					if (j < end) j += 1; // if j at the end don't increment it
+					shift_process<T>(arr, L, R);
 
+					if (R < end) R += 1; // if j at the end don't increment it
 				}
 				else {
 
 					// if i > j and not a vaild range we need to preform swap
-					if (i > j && compare_function(arr[i], arr[j])) swap<T>(arr[i], arr[j]);
-
-					// in that case increment i only 
-					i += 1;
+					if (L > R && compare_function(arr[L], arr[R])) {
+						swap<T>(arr[L], arr[R]);
+					}
 
 				}
 
-			}
-		}
+				L += 1;
+
+			}// end of sort loop
+
+		} // end of sort_process function
 
 		// O( n log n ) 
 		// recursive process
-		template<typename T> void split_process_inplace(
+		template<typename T> void split_process(
 			T* arr, // target array
 			int left, // start index you want to sort
 			int right, // end index 
@@ -97,13 +97,13 @@ namespace sort {
 
 				// O( log n )
 				// then recursive process from "start_index to mid" & "mid + 1 to end_index"
-				split_process_inplace<T>(arr, left, mid, compare_function);
-				split_process_inplace<T>(arr, mid + 1, right, compare_function);
+				split_process<T>(arr, left, mid, compare_function);
+				split_process<T>(arr, mid + 1, right, compare_function);
 
 				// O( n )
 				// preform merging and sorting after split done
 				// sort from start_index to end_index "full range"
-				sort_process_inplace<T>(arr, left, mid + 1, right, compare_function);
+				sort_process<T>(arr, left, mid + 1, right, compare_function);
 
 			}
 			else {
@@ -180,8 +180,8 @@ namespace sort {
 	) {
 
 		// split process calls merge/sort process
-		split_process_inplace<T>(arr, start_index, end_index, compare_function);
-
+		split_process<T>(arr, start_index, end_index, compare_function);
+		
 	}
 
 
