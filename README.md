@@ -1,8 +1,8 @@
 # algorithms <img src="https://img.shields.io/github/issues/Mouradouchane/algorithms"> <img src="https://img.shields.io/github/forks/Mouradouchane/algorithms"> <img src="https://img.shields.io/github/stars/Mouradouchane/algorithms"> <img src="https://img.shields.io/github/license/Mouradouchane/algorithms">
 
-my implementation of "algorithms" using C++ 
+in this repo you will find a few algorithms written using C++ .
 
-<h2> list </h2>
+## list :
 ### sorting
 <a href="./algorithms/algorithms/sort/hierarchical_sorting.hpp" target="_blank"> pyramid_sort </a> <br>
 <a href="./algorithms/algorithms/sort/linear_sort.hpp" target="_blank"> linear_sort </a> <br>
