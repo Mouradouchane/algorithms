@@ -1,8 +1,0 @@
-﻿  algorithms.cpp
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms.cpp(95,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\devc\Desktop\cpp\algorithms\algorithms\algorithms.cpp(72): message : see reference to function template instantiation 'void fill_array<int>(T *,size_t &,const T &,const T &)' being compiled
-          with
-          [
-              T=int
-          ]
-  algorithms.vcxproj -> C:\Users\devc\Desktop\cpp\algorithms\Debug\algorithms.exe
